@@ -1,0 +1,19 @@
+Overview: 
+ConnectOPT (OPT: Optional Practical Training) is a Job Board for Students across all streams looking for Job. It is hosted in Azure cloud.
+It has a responsive design can support all major browsers and all smart devices such as mobile and Tablets.
+
+
+Technologies Used:
+ReactJS, Bootstrap, CSS, HTML5, Python, .NET Core 3.1, C#, Azure (WebAPI, Azure DataBricks), MongoDB, PowerBI
+
+Description:
+User Interface is accessible to 3 different type of users. 
+1. Candidates : Candidate should be able to login with Single Signon or create thier own account and login.
+		Candidate should create a profile with the technology, location, salary and other academic details.
+		Once the candidate logs in, search page should show the Jobs available based on candidates profile.
+2. Employers : Employer should be able to create account with company id (not public emails such as gmail/hotmail etc is not allowed)
+	       This is to ensure authenticity of the employer. Employer should be able to post the Job or upload it using specific formate.
+3. College Admins : College Admins can create account using .edu email only. College admins can upload candidate profiles with the registration number and other details such as technology of candidate, grades etc
+
+Bulk Upload: Employers can upload specific formate files for uploading multiple jobs into a specific folder in Azure Storage. Azure Bricks will pick the file and processes it and store in mongodb.
+
