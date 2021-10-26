@@ -7,6 +7,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux'
 import { loginAction } from '../../actions/AuthActions';
 import { push } from 'react-router-redux'
+import { GoogleLogin } from 'react-google-login';
+// refresh token
+import { refreshTokenSetup } from '../../containers';
+
+const clientId =
+	'1067687915662-c55850gp9n60cseoplq2b95qeh1rsco9.apps.googleusercontent.com';
 
 var bnr = require('./../../images/background/bg6.jpg');
 toast.configure()
@@ -54,6 +60,28 @@ const Authenticate = () => {
 		});
 	}
 
+	const onSuccess = (res) => {
+		
+		toast.success('your authenticate is sucessed', { autoClose: 3000 })
+		dispatch(loginAction(res.profileObj))
+		history.push('/');
+	};
+
+	const onFailure = (res) => {
+		console.log('Login failed: res:', res);
+		toast.warning('your authenticte is failed', { autoClose: 3000 })
+	};
+
+	const responseFacebook = (response) => {
+		console.log(response);
+		if (response.accessToken) {
+			toast.success('your authenticate is sucessed', { autoClose: 3000 })
+			dispatch(loginAction(response))
+			history.push('/');
+		} else {
+			toast.warning('your authenticte is failed', { autoClose: 3000 })
+		}
+	}
 
 	const onLogin = (e) => {
 
@@ -115,10 +143,32 @@ const Authenticate = () => {
 													<div className="dz-social clearfix">
 														<h5 className="form-title m-t5 pull-left">Sign In With</h5>
 														<ul className="dez-social-icon dez-border pull-right dez-social-icon-lg text-white">
-															<li><Link to={''} className="fa fa-facebook  fb-btn mr-1" target="bank"></Link></li>
-															<li><Link to={''} className="fa fa-twitter  tw-btn mr-1" target="bank"></Link></li>
+															
+															<li>
+																<GoogleLogin
+																	clientId={clientId}
+																	render={(renderProps) => (
+																		<Link to={''} className="fa fa-google-plus  gplus-btn" target="bank" onClick={renderProps.onClick}></Link>
+																		)
+																	}
+																	onSuccess={onSuccess}
+																	onFailure={onFailure}
+																	cookiePolicy={'single_host_origin'}
+																	style={{ marginTop: '100px' }}
+																/>
+															</li>
+															<li>
+																<Link to={''} className="fa fa-facebook  fb-btn mr-1" target="bank"></Link>
+																<FacebookLogin
+																	appId="1088597931155576"
+																	autoLoad={true}
+																	render={(renderProps) => (
+																		<Link to={''} onClick={renderProps.onClick} className="fa fa-facebook  fb-btn mr-1" target="bank"></Link>
+																	)
+																	}
+																	callback={responseFacebook} />,
+															</li>
 															<li><Link to={''} className="fa fa-linkedin link-btn mr-1" target="bank"></Link></li>
-															<li><Link to={''} className="fa fa-google-plus  gplus-btn" target="bank"></Link></li>
 														</ul>
 													</div>
 												</form>

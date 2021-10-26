@@ -56,7 +56,7 @@ class Header extends Component{
 						<Navbar.Toggle />
 						<Navbar.Collapse className="justify-content-end">
 						<Navbar.Text>
-							<Link to={"/Authenticate"} className="site-button" style={{color: 'white'}}><i className="fa fa-user"></i> Sign Up</Link>
+							<Link to={"/Authenticate"} className="site-button" style={{color: 'white'}}><i className="fa fa-user"></i> Sign In</Link>
 						</Navbar.Text>
 						</Navbar.Collapse>
 					</Container>
