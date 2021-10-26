@@ -8,8 +8,8 @@ import { useDispatch } from 'react-redux'
 import { loginAction } from '../../actions/AuthActions';
 import { push } from 'react-router-redux'
 import { GoogleLogin } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 // refresh token
-import { refreshTokenSetup } from '../../containers';
 
 const clientId =
 	'1067687915662-c55850gp9n60cseoplq2b95qeh1rsco9.apps.googleusercontent.com';
@@ -157,18 +157,15 @@ const Authenticate = () => {
 																	style={{ marginTop: '100px' }}
 																/>
 															</li>
-															<li>
-																<Link to={''} className="fa fa-facebook  fb-btn mr-1" target="bank"></Link>
+															<li style={{ marginLeft: '10px' }}>
 																<FacebookLogin
 																	appId="1088597931155576"
-																	autoLoad={true}
 																	render={(renderProps) => (
 																		<Link to={''} onClick={renderProps.onClick} className="fa fa-facebook  fb-btn mr-1" target="bank"></Link>
 																	)
 																	}
 																	callback={responseFacebook} />,
 															</li>
-															<li><Link to={''} className="fa fa-linkedin link-btn mr-1" target="bank"></Link></li>
 														</ul>
 													</div>
 												</form>
