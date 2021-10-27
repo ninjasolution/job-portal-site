@@ -92,7 +92,7 @@ function Jobsection(){
 								<div className="quote-info">
 									<h4>Make a Difference with Your Online Resume!</h4>
 									<p>Your resume in minutes with JobBoard resume assistant is ready!</p>
-									<Link to={"/register"} className="site-button">Create an Account</Link>
+									{/*<Link to={"/register"} className="site-button">{  }Create an Account</Link>*/}
 								</div>
 							</div>
 						</div>

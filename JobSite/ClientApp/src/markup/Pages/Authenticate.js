@@ -51,7 +51,7 @@ const Authenticate = () => {
 		};
 		axios.post(`${BaseURL}/api/account/register`, newUser).then((response) => {
 			if (response.status === 200) {
-				toast.success('successful', { autoClose: 3000 });
+				//toast.success('successful', { autoClose: 3000 });
 				setSelectPage(true);
 				return;
 			}
@@ -62,24 +62,24 @@ const Authenticate = () => {
 
 	const onSuccess = (res) => {
 		
-		toast.success('your authenticate is sucessed', { autoClose: 3000 })
+		//toast.success('your authenticate is sucessed', { autoClose: 3000 })
 		dispatch(loginAction(res.profileObj))
 		history.push('/');
 	};
 
 	const onFailure = (res) => {
 		console.log('Login failed: res:', res);
-		toast.warning('your authenticte is failed', { autoClose: 3000 })
+		//toast.warning('your authenticte is failed', { autoClose: 3000 })
 	};
 
 	const responseFacebook = (response) => {
 		console.log(response);
 		if (response.accessToken) {
-			toast.success('your authenticate is sucessed', { autoClose: 3000 })
+			//toast.success('your authenticate is sucessed', { autoClose: 3000 })
 			dispatch(loginAction(response))
 			history.push('/');
 		} else {
-			toast.warning('your authenticte is failed', { autoClose: 3000 })
+			//toast.warning('your authenticte is failed', { autoClose: 3000 })
 		}
 	}
 
@@ -99,7 +99,7 @@ const Authenticate = () => {
 				dispatch(loginAction(response.data))
 				return;
 			}
-			toast.error('failure', { autoClose: 3000 });
+			//toast.error('failure', { autoClose: 3000 });
 		});
 	}
 
@@ -176,8 +176,8 @@ const Authenticate = () => {
 										</div>
 										<div className="bottom-footer clearfix m-t10 m-b20 row text-center">
 											<div className="col-lg-12 text-center">
-												<span> © Copyright by <i className="fa fa-heart m-lr5 text-red heart"></i>
-													<Link to={''} >DexignZone </Link> All rights reserved.</span>
+												{/*<span> © Copyright by <i className="fa fa-heart m-lr5 text-red heart"></i>*/}
+												{/*	<Link to={''} >DexignZone </Link> All rights reserved.</span>*/}
 											</div>
 										</div>
 									</div>

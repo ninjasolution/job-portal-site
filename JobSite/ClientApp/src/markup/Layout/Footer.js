@@ -71,8 +71,8 @@ function Footer(){
 				<div className="container">
 					<div className="row">
 						<div className="col-lg-12 text-center">
-							<span> © Copyright by <i className="fa fa-heart m-lr5 text-red heart"></i>
-							<Link to={''}>DexignZone </Link> All rights reserved.</span> 
+							{/*<span> © Copyright by <i className="fa fa-heart m-lr5 text-red heart"></i>*/}
+							{/*<Link to={''}>DexignZone </Link> All rights reserved.</span> */}
 						</div>
 					</div>
 				</div>

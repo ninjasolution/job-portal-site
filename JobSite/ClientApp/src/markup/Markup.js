@@ -20,7 +20,7 @@ import Homepage from './Pages/Homepage';
 
 
 // import Aboutus from './Pages/Aboutus';
-// import Jobdetail from './Pages/Jobdetail';
+import Jobdetail from './Pages/Jobdetail';
 // import Companies from './Pages/Companies';
 // import Freejobalerts from './Pages/Freejobalerts';
 // import Browsejoblist from './Pages/Browsejoblist';
@@ -64,7 +64,8 @@ class Markup extends Component{
                     <Switch>
                         <Route path='/' exact component={Homepage} />
 						<Route path='/Authenticate' exact component={Authenticate} />
-						
+						<Route path='/job-detail' exact component={Jobdetail} />
+
                         {/* <Route path='/jobs-profile' exact component={Jobprofile} />
                         <Route path='/jobs-my-resume' exact component={Jobmyresume} />
                         <Route path='/jobs-applied-job' exact component={Jobsappliedjob} />
@@ -83,7 +84,6 @@ class Markup extends Component{
 						
 						
 						<Route path='/about-us' exact component={Aboutus} />
-						<Route path='/job-detail' exact component={Jobdetail} />
 						<Route path='/companies' exact component={Companies} />
 						<Route path='/free-job-alerts' exact component={Freejobalerts} />
 						<Route path='/browse-job-list' exact component={Browsejoblist} />

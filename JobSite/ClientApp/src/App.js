@@ -6,7 +6,6 @@ import './css/templete.css';
 import './css/skin/skin-1.css';
 import './plugins/slick/slick.min.css';
 import './plugins/slick/slick-theme.min.css';
-import {  } from 'react-router-redux'
 import { Provider } from 'react-redux'
 import { configStore } from './reducers'
 const store = configStore(undefined);

@@ -8,12 +8,15 @@ import Jobcategories from '../Element/Jobcategories';
 import Featureblog from '../Element/Featureblog';
 import Jobsection from '../Element/Jobsection';
 import Owltestimonial from '../Element/Owlblog1';
-
+import { useSelector } from 'react-redux'
 //Images
 var bnr2 = require('./../../images/background/bg4.jpg');
 var bnr3 = require('./../../images/lines.png');
 
-function Homepage(){
+function Homepage() {
+
+	const authedUser = useSelector(state => state.auth.user);
+
 	return(
 		<div className="page-wraper">
 			<Header />
@@ -47,7 +50,7 @@ function Homepage(){
 												</div>
 												<p>Lorem ipsum dolor sit amet adipiscing elit sed do eiusmod tempors labore et dolore magna siad enim aliqua</p>
 												<div className="m-t20"> 
-													<Link to={"/register"} className="site-button radius-xl"><span className="p-lr30">Sign Up</span></Link> 
+													<Link to={"#"} className="site-button radius-xl"><span className="p-lr30">Apply now</span></Link>
 												</div>
 											</div>
 										</div>
@@ -61,7 +64,7 @@ function Homepage(){
 												</div>
 												<p>Lorem ipsum dolor sit amet adipiscing elit sed do eiusmod tempors labore et dolore magna siad enim aliqua</p>
 												<div className="m-t20"> 
-													<Link to={"/register"} className="site-button white radius-xl"><span className="text-primary p-lr30">Sign Up</span></Link> 
+													<Link to={"#"} className="site-button white radius-xl"><span className="text-primary p-lr30">Buy now</span></Link>
 												</div>
 											</div>
 										</div>
@@ -75,7 +78,7 @@ function Homepage(){
 												</div>
 												<p>Lorem ipsum dolor sit amet adipiscing elit sed do eiusmod tempors labore et dolore magna siad enim aliqua</p>
 												<div className="m-t20"> 
-													<Link to={"/register"} className="site-button radius-xl"><span className="p-lr30">Sign Up</span></Link> 
+													<Link to={"/register"} className="site-button radius-xl"><span className="p-lr30">Buy now</span></Link> 
 												</div>
 											</div>
 										</div>
