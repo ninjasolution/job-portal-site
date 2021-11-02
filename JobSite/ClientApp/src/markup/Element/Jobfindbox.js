@@ -36,7 +36,7 @@ class Jobfindbox extends Component{
 					<div className="find-job-bx">
 						<form className="dezPlaceAni">
 							<div className="row">
-								<div className="col-lg-4 col-md-6">
+								<div className="col-lg-6 col-md-6">
 									<div className="form-group">
 										<label>Job Title, Keywords, or Phrase</label>
 										<div className="input-group">
@@ -47,7 +47,7 @@ class Jobfindbox extends Component{
 										</div>
 									</div>
 								</div>
-								<div className="col-lg-3 col-md-6">
+								<div className="col-lg-4 col-md-6">
 									<div className="form-group">
 										<label>City, State or ZIP</label>
 										<div className="input-group">
@@ -58,25 +58,7 @@ class Jobfindbox extends Component{
 										</div>
 									</div>
 								</div>
-								<div className="col-lg-3 col-md-6">
-									<div className="form-group">
-										<Form.Control as="select" custom className="select-btn">
-											<option>Select Sector</option>
-											<option>Construction</option>
-											<option>Corodinator</option>
-											<option>Employer</option>
-											<option>Financial Career</option>
-											<option>Information Technology</option>
-											<option>Marketing</option>
-											<option>Quality check</option>
-											<option>Real Estate</option>
-											<option>Sales</option>
-											<option>Supporting</option>
-											<option>Teaching</option> 
-										</Form.Control>
-									</div>
-								</div>
-								<div className="col-lg-2 col-md-6">
+								<div className="col-lg-2 col-md-12">
 									<button type="submit" className="site-button btn-block">Find Job</button>
 								</div>
 							</div>

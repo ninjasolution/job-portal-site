@@ -1,35 +1,36 @@
 import React, {Component} from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
-import Homepage from './Pages/Homepage';
+import ScrollToTop from './Element/ScrollToTop';
+import Jobmyresume from './Pages/Jobmyresume';
+import Companyprofile from './Pages/Companyprofile';
+import Companyresume from './Pages/Companyresume';
+import Componypostjobs from './Pages/Componypostjobs';
+import Companymanage from './Pages/Companymanage';
+import Jobdetail from './Pages/Jobdetail';
+import Browsejobfilterlist from './Pages/Browsejobfilterlist';
+import Authenticate from './Pages/Authenticate';
 
 // import Jobprofile from './Pages/Jobprofile';
-// import Jobmyresume from './Pages/Jobmyresume';
 // import Jobsappliedjob from './Pages/Jobsappliedjob';
 // import Jobsalert from './Pages/Jobsalert';
 // import Jobsavedjobs from './Pages/Jobsavedjobs';
 // import Jobcvmanager from './Pages/Jobcvmanager';
 // import Changepasswordpage from './Pages/Changepasswordpage';
 
-// import Companyprofile from './Pages/Companyprofile';
-// import Companyresume from './Pages/Companyresume';
-// import Componypostjobs from './Pages/Componypostjobs';
-// import Companymanage from './Pages/Companymanage';
+
 // import Companytransactions from './Pages/Companytransactions';
 // import Browsecandidates from './Pages/Browsecandidates';
 
 
 // import Aboutus from './Pages/Aboutus';
-import Jobdetail from './Pages/Jobdetail';
 // import Companies from './Pages/Companies';
 // import Freejobalerts from './Pages/Freejobalerts';
 // import Browsejoblist from './Pages/Browsejoblist';
 // import Browsejobgrid from './Pages/Browsejobgrid';
-// import Browsejobfilterlist from './Pages/Browsejobfilterlist';
 // import Browsejobfiltergrid from './Pages/Browsejobfiltergrid';
 
 // import Categoryalljob from './Pages/Categoryalljob';
-// import Categorycompanyjob from './Pages/Categorycompanyjob';
+//import Categorycompanyjob from './Pages/Categorycompanyjob';
 // import Categorydesignationsjob from './Pages/Categorydesignationsjob';
 // import Categoryjobs from './Pages/Categoryjobs';
 // import Categorylocationjobs from './Pages/Categorylocationjobs';
@@ -42,7 +43,6 @@ import Jobdetail from './Pages/Jobdetail';
 // import Loginpage3 from './Pages/Loginpage3';
 
 // import Register1 from './Pages/Register1';
-import Authenticate from './Pages/Authenticate';
 // import Error404 from './Pages/Error404';
 
 // import Contact from './Pages/Contact';
@@ -54,7 +54,6 @@ import Authenticate from './Pages/Authenticate';
 // import Blogdetailgridsidebar from './Pages/Blogdetailgridsidebar';
 // import Blogleftimg from './Pages/Blogleftimg';
 // import Blogdetail from './Pages/Blogdetail';
-import ScrollToTop from './Element/ScrollToTop';
 
 class Markup extends Component{
 	render(){
@@ -62,12 +61,17 @@ class Markup extends Component{
 			<BrowserRouter basename="">
                 <div className="page-wraper">
                     <Switch>
-                        <Route path='/' exact component={Homepage} />
+                        <Route path='/' exact component={Browsejobfilterlist} />
 						<Route path='/Authenticate' exact component={Authenticate} />
 						<Route path='/job-detail' exact component={Jobdetail} />
+						<Route path='/company-manage-job' exact component={Companymanage} />
+						<Route path='/company-post-jobs' exact component={Componypostjobs} />
+						<Route path='/company-profile' exact component={Companyprofile} />
+						<Route path='/browse-job-filter-list' exact component={Browsejobfilterlist} />
+                        <Route path='/jobs-my-resume' exact component={Jobmyresume} />
+						<Route path='/company-resume' exact component={Companyresume} />
 
                         {/* <Route path='/jobs-profile' exact component={Jobprofile} />
-                        <Route path='/jobs-my-resume' exact component={Jobmyresume} />
                         <Route path='/jobs-applied-job' exact component={Jobsappliedjob} />
                         <Route path='/jobs-alerts' exact component={Jobsalert} />
                         <Route path='/jobs-saved-jobs' exact component={Jobsavedjobs} />
@@ -75,10 +79,6 @@ class Markup extends Component{
                         <Route path='/jobs-change-password' exact component={Changepasswordpage} />
 							
 							
-						<Route path='/company-profile' exact component={Companyprofile} />
-						<Route path='/company-resume' exact component={Companyresume} />
-						<Route path='/company-post-jobs' exact component={Componypostjobs} />
-						<Route path='/company-manage-job' exact component={Companymanage} />
 						<Route path='/company-transactions' exact component={Companytransactions} />
 						<Route path='/browse-candidates' exact component={Browsecandidates} />
 						
@@ -88,7 +88,6 @@ class Markup extends Component{
 						<Route path='/free-job-alerts' exact component={Freejobalerts} />
 						<Route path='/browse-job-list' exact component={Browsejoblist} />
 						<Route path='/browse-job-grid' exact component={Browsejobgrid} />
-						<Route path='/browse-job-filter-list' exact component={Browsejobfilterlist} />
 						<Route path='/browse-job-filter-grid' exact component={Browsejobfiltergrid} />
 						
 						<Route path='/category-all-jobs' exact component={Categoryalljob} />

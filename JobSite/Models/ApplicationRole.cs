@@ -12,6 +12,5 @@ namespace JobSite.Models
     [CollectionName("Roles")]
     public class ApplicationRole : MongoIdentityRole<ObjectId>
     {
-        public string RoleName { get; set; }
     }
 }

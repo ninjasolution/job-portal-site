@@ -25,11 +25,11 @@ namespace JobSite
             Users = database.GetCollection<ApplicationUser>(settings.Users);
             Roles = database.GetCollection<ApplicationRole>(settings.Roles);
 
-            if (Roles.Count(filter: r => true) > 0)
+            if (Roles.Count(filter: r => true) == 0)
             {
-                Roles.InsertOne( new ApplicationRole { RoleName = "Administrator" });
-                Roles.InsertOne( new ApplicationRole { RoleName = "Candidater" });
-                Roles.InsertOne( new ApplicationRole { RoleName = "Emmployeer" });
+                Roles.InsertOne( new ApplicationRole { Name = "Administrator" });
+                Roles.InsertOne( new ApplicationRole { Name = "Candidater" });
+                Roles.InsertOne( new ApplicationRole { Name = "Employeer" });
             }
         }
 
@@ -46,20 +46,24 @@ namespace JobSite
                 throw new Exception("Password is required");
 
             if (Users.Find(x => x.Email == User.Email).Count() > 0)
-                throw new Exception("Username \"" + User.Email + "\" is already taken");
+                throw new Exception("Username " + User.Email + " is already taken");
 
             string passwordHash;
             byte[] passwordSalt;
             CreatePasswordHash(User.Password, out passwordHash, out passwordSalt);
+
+            ApplicationRole role = Roles.Find(r => r.Name == User.Roles[0]).FirstOrDefault();
+            if(role == null) throw new Exception("Your role is not exist");
 
             ApplicationUser newUser = new ApplicationUser();
             newUser.PasswordHash = passwordHash;
             newUser.PasswordSalt = passwordSalt;
             newUser.Email = User.Email;
             newUser.UserName = User.FirstName + User.LastName;
+            newUser.Roles.Add(role.Id);
 
             Users.InsertOne(newUser);
-
+            
         }
         public ApplicationUser Authenticate(string Email, string Password)
         {

@@ -9,10 +9,25 @@ import { loginAction } from '../../actions/AuthActions';
 import { push } from 'react-router-redux'
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+import {Form} from 'react-bootstrap';
 // refresh token
 
 const clientId =
 	'1067687915662-c55850gp9n60cseoplq2b95qeh1rsco9.apps.googleusercontent.com';
+const publicEmails = [
+	'gmail',
+	'yahoo',
+	'outlook',
+	'inbox',
+	'gmail',
+	'icloud',
+	'mail',
+	'zoho',
+	'aol',
+	'yandex',
+	'hotmail',
+	'live',
+]
 
 var bnr = require('./../../images/background/bg6.jpg');
 toast.configure()
@@ -26,6 +41,7 @@ const Authenticate = () => {
 	const [password, setPassword] = useState('');
 	const dispatch = useDispatch();
 	const history = useHistory();
+	const [userRole, setUserRole] = useState('Candidater');
 
 	// Set to 10sec
 	//toast.warning('Danger', { autoClose: 10000 })
@@ -43,21 +59,37 @@ const Authenticate = () => {
 
 		e.preventDefault();
 
+		if(userRole === 'Employeer'){
+			const companeyName = email.split('@')[1].split('.')[email.split('@')[1].split('.').length - 2];
+			if(publicEmails.includes(companeyName)){
+				toast.error('Please use your company email', { autoClose: 3000 });
+				return;
+			}
+		}else if(userRole === 'Administrator') {
+			if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.edu)+$/.test(email)) 
+			toast.error('Please use your .edu email', { autoClose: 3000 });
+			return;
+		}
 		const newUser = {
 			FirstName: firstName,
 			LastName: lastName,
 			Email: email,
-			Password: password
+			Password: password,
+			Roles: [ userRole ]
 		};
-		axios.post(`${BaseURL}/api/account/register`, newUser).then((response) => {
-			if (response.status === 200) {
-				//toast.success('successful', { autoClose: 3000 });
+		axios.post(`${BaseURL}/api/account/register`, newUser)
+			.then((response) => {
+				console.log(response)
+				if (response.data) {
+					toast.error(response.data, { autoClose: 3000 });
+					//toast.success('successful', { autoClose: 3000 });
+					return;
+				}
 				setSelectPage(true);
-				return;
-			}
-			toast.error('failure', { autoClose: 3000 });
-
-		});
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	}
 
 	const onSuccess = (res) => {
@@ -91,16 +123,20 @@ const Authenticate = () => {
 			Email: email,
 			Password: password
 		};
-		axios.post(`${BaseURL}/api/account/login`, User).then((response) => {
-			if (response.status === 200) {
-				//toast.success('successful', { autoClose: 3000 });
-				//setSelectPage(true);
-				history.push('/');
-				dispatch(loginAction(response.data))
-				return;
-			}
-			//toast.error('failure', { autoClose: 3000 });
-		});
+		axios.post(`${BaseURL}/api/account/login`, User)
+			.then((response) => {
+				if (response.status === 200) {
+					//toast.success('successful', { autoClose: 3000 });
+					//setSelectPage(true);
+					history.push('/');
+					dispatch(loginAction(response.data))
+					return;
+				}
+				//toast.error('failure', { autoClose: 3000 });
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	}
 
 	return(
@@ -120,20 +156,20 @@ const Authenticate = () => {
 										<div className="clearfix"></div>
 										<div className="tab-content nav p-b30 tab">
 											<div id="login" className="tab-pane active ">
-												<form className=" dez-form p-b30">
+												<form className=" dez-form p-b30" onSubmit={onLogin}>
 													<h3 className="form-title m-t0">Personal Information</h3>
 													<div className="dez-separator-outer m-b5">
 														<div className="dez-separator bg-primary style-liner"></div>
 													</div>
 													<p>Enter your e-mail address and your password. </p>
 													<div className="form-group">
-														<input name="dzName" required="" className="form-control" placeholder="User Email" type="text" defaultValue={email} onChange={e => setEmail(e.target.value)} />
+														<input name="email" className="form-control" placeholder="User Email" type="text" defaultValue={email} onChange={e => setEmail(e.target.value)} required/>
 													</div>
 													<div className="form-group">
-														<input name="dzName" required="" className="form-control " placeholder="Type Password" type="password" defaultValue={password} onChange={e => setPassword(e.target.value)} />
+														<input name="password" className="form-control " placeholder="Type Password" type="password" defaultValue={password} onChange={e => setPassword(e.target.value)} required/>
 													</div>
 													<div className="form-group text-left">
-														<button className="site-button dz-xs-flex m-r5" onClick={e => onLogin(e)}>login</button>
+														<button type="submit" className="site-button dz-xs-flex m-r5" >login</button>
 														<span className="custom-control custom-checkbox">
 															<input type="checkbox" className="custom-control-input" id="check1" name="example1" />
 															<label className="custom-control-label" htmlFor="check1">Remember me</label>
@@ -148,7 +184,7 @@ const Authenticate = () => {
 																<GoogleLogin
 																	clientId={clientId}
 																	render={(renderProps) => (
-																		<Link to={''} className="fa fa-google-plus  gplus-btn" target="bank" onClick={renderProps.onClick}></Link>
+																		<Link to={''} className="fa fa-google-plus  gplus-btn" target="bank" onClick={() => renderProps.onClick()}></Link>
 																		)
 																	}
 																	onSuccess={onSuccess}
@@ -188,27 +224,35 @@ const Authenticate = () => {
 							<div className="row">
 								<div className="col-xl-4 col-lg-5 col-md-6 col-sm-12 bg-white z-index2 relative p-a0 content-scroll skew-section left-bottom">
 									<div className="login-form style-2" style={{ justifyContent: 'center', margin: 'auto' }}>
-										<form >
+										<form onSubmit={onRegister}>
 												<h4 className="font-weight-700 m-b5">PERSONAL INFORMATION</h4>
 												<p className="font-weight-600">If you have an account with us, please <Link to={'Authenticate'} onClick={() => setSelectPage(true)} className="forget-pass">log in.</Link> </p>
-											<div className="form-group">
-													<label className="font-weight-700">First Name *</label>
-													<input name="dzName" required="" className="form-control" placeholder="First Name" type="text" defaultValue={firstName} onChange={e => setFirstName(e.target.value)} />
-											</div>
-											<div className="form-group">
-													<label className="font-weight-700">Last Name *</label>
-													<input name="dzName" required="" className="form-control" placeholder="Last Name" type="text" defaultValue={lastName} onChange={e => setLastName(e.target.value)} />
-											</div>
-											<div className="form-group">
-													<label className="font-weight-700">E-MAIL *</label>
-													<input name="dzName" required="" className="form-control" placeholder="Your Email Address" type="email" defaultValue={email} onChange={e => setEmail(e.target.value)} />
-											</div>
-											<div className="form-group">
-													<label className="font-weight-700">Password *</label>
-													<input name="dzName" required="" className="form-control " placeholder="Type Password" type="password" defaultValue={password} onChange={e => setPassword(e.target.value)} />
-											</div>
+												<div className="form-group">
+													<label className="font-weight-700">I am a</label>
+													<Form.Control as="select" className="form-control" defaultValue={userRole} onChange={e => setUserRole(e.target.value)}>
+														<option value='Candidater'>Candidater</option>
+														<option value='Employeer'>Employeer</option>
+														<option value='Administrator'>Administrator</option>
+													</Form.Control>
+												</div>
+												<div className="form-group">
+														<label className="font-weight-700">First Name *</label>
+														<input name="fName" className="form-control" placeholder="First Name" type="text" defaultValue={firstName} onChange={e => setFirstName(e.target.value)} required/>
+												</div>
+												<div className="form-group">
+														<label className="font-weight-700">Last Name *</label>
+														<input name="lName" className="form-control" placeholder="Last Name" type="text" defaultValue={lastName} onChange={e => setLastName(e.target.value)} required/>
+												</div>
+												<div className="form-group">
+														<label className="font-weight-700">E-MAIL *</label>
+														<input name="email" className="form-control" placeholder="Your Email Address" type="email" defaultValue={email} onChange={e => setEmail(e.target.value)} required/>
+												</div>
+												<div className="form-group">
+														<label className="font-weight-700">Password *</label>
+														<input name="password" className="form-control " placeholder="Type Password" type="password" defaultValue={password} onChange={e => setPassword(e.target.value)} required/>
+												</div>
 												<div className="text-left">
-													<button className="site-button button-lg outline outline-2" onClick={(e) => onRegister(e)}>CREATE</button>
+													<button type="submit" className="site-button button-lg outline outline-2">CREATE</button>
 											</div>
 										</form>
 									</div>

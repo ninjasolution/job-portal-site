@@ -17,3 +17,19 @@ User Interface is accessible to 3 different type of users.
 
 Bulk Upload: Employers can upload specific formate files for uploading multiple jobs into a specific folder in Azure Storage. Azure Bricks will pick the file and processes it and store in mongodb.
 
+
+
+
+
+
+Milestone: Created 4 milestones each for $100. 
+1. Create the Home Page and supplement Page which should be responsive and support all major devices - Chrome, Edge, Safari, IOS and Andriod Devices.  
+   Create the Login and Register page for Students and store it in MongoDB
+   Code should be Fully functional
+  
+2. Create the Login and Register page for Employer and College Admin
+
+3. Should be able to Search by Job Name, Location on Home page.
+
+4. Code Review, Performance Testing and all defects to be completed with in the scope of this project 
+

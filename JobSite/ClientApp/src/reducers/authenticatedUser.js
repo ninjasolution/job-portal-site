@@ -1,4 +1,4 @@
-import { LOGIN } from "../containers";
+import { LOGIN, LOGOUT } from "../containers";
 
 export const auth = (state = {}, action) => {
 
@@ -7,7 +7,10 @@ export const auth = (state = {}, action) => {
             return {
                 user: action.payload.data   
             }
-    
+        case LOGOUT:
+            return {
+                user: null
+            }
         default:
             return {
                 user: null

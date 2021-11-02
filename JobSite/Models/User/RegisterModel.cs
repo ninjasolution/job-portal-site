@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace JobSite.Models
@@ -15,5 +16,7 @@ namespace JobSite.Models
 
         [Required]
         public string Password { get; set; }
+        [Required]
+        public List<string> Roles { get; set; }
     }
 }
