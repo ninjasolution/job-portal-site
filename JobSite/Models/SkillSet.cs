@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace JobSite.Models
 {
-    public class SkillSet
+    public class SkillSet 
     {
-        [PrimaryKey]
-        [MapTo("_id")]
-        public ObjectId Id { get; set; }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
         public string SkillSetName { get; set; }
     }
 }

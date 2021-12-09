@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace JobSite.Models
 {
-    public class BusinessStream 
+    public class JobSkills
     {
+        [PrimaryKey]
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
-        public string BusinessStreamName { get; set; }
+        public string Id { get; set; } 
+        public SkillSet Skill { get; set; }
+        public PostJob Job { get; set; }
     }
 }

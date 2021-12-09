@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace JobSite.Models
 {
-    public class Company
+    public class Candidate
     {
         public string Id { get; set; }
         public string UserId { get; set; }
@@ -23,20 +23,18 @@ namespace JobSite.Models
         public bool IsActive { get; set; }
         public string ImageURL { get; set; }
         public DateTimeOffset DateOfBirth { get; set; }
-        public string CompanyName { get; set; }
-        public string Category { get; set; }
-        public string ContactEmail { get; set; }
-        public string ContactCountry { get; set; }
-        public string ContactCity { get; set; }
-        public string Zip { get; set; }
-        public string Address { get; set; }
+        public string ProTitle { get; set; }
+        public float CurrentSalary { get; set; }
+        public float? ExpectedSalary { get; set; }
         public string Description { get; set; }
-        public string WebSiteUrl { get; set; }
-        public string FaceBookLink { get; set; }
-        public string TwitterLink { get; set; }
-        public string GoogleLink { get; set; }
-        public string LinkedinLink { get; set; }
-        public DateTimeOffset EstablishmentDate { get; set; }
-
+        public string PostCode { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
+        public string FullAddress { get; set; }
+        public bool IsAnnuallyMonthly { get; set; }
+        public List<string> Languages { get; set; }
+        public List<string> Skills { get; set; }
+        public List<string> Educations { get; set; }
+        public List<string> Experiences { get; set; }
     }
 }

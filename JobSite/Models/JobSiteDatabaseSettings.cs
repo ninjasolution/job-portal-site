@@ -9,6 +9,16 @@ namespace JobSite.Models
     {
         public string Users { get; set; }
         public string Roles { get; set; }
+        public string CompanyProfiles { get; set; }
+        public string CompanyImages { get; set; }
+        public string CandidateProfiles { get; set; }
+        public string CandidateSkills { get; set; }
+        public string ExperienceDetails { get; set; }
+        public string EducationDetails { get; set; }
+        public string Skills { get; set; }
+        public string PostJobs { get; set; }
+        public string JobSkills { get; set; }
+        public string JobFiles { get; set; }
         public string ConnectionString { get; set; }
         public string DatabaseName { get; set; }
     }
@@ -16,8 +26,18 @@ namespace JobSite.Models
 
     public interface IJobSiteDatabaseSettings
     {
-        string Users { get; set; }
-        string Roles { get; set; }
+        public string Users { get; set; }
+        public string Roles { get; set; }
+        public string CompanyProfiles { get; set; }
+        public string CompanyImages { get; set; }
+        public string CandidateProfiles { get; set; }
+        public string CandidateSkills { get; set; }
+        public string ExperienceDetails { get; set; }
+        public string EducationDetails { get; set; }
+        public string Skills { get; set; }
+        public string PostJobs { get; set; }
+        public string JobSkills { get; set; }
+        public string JobFiles { get; set; }
         string ConnectionString { get; set; }
         string DatabaseName { get; set; }
 

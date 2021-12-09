@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Realms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +14,14 @@ namespace JobSite.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         public bool IsCurrentJob { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTimeOffset StartDate { get; set; }
+        public DateTimeOffset EndDate { get; set; }
         public string JobTitle { get; set; }
         public string CompanyName { get; set; }
         public string JobLocationCity { get; set; }
         public string JobLocationState { get; set; }
         public string JobLocationCountry { get; set; }
         public string Description { get; set; }
-
 
     }
 }

@@ -26,7 +26,5 @@ namespace JobSite.Models
         {
             return _db.GetCollection<T>(name);
         }
-
-
     }
 }

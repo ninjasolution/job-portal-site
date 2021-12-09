@@ -9,6 +9,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using JobSite.Common;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using MongoDB.Bson;
 using System;
 
@@ -28,9 +36,12 @@ namespace JobSite
         {
 
             var mongoDbSettings = Configuration.GetSection(nameof(JobSiteDatabaseSettings)).Get<JobSiteDatabaseSettings>();
+
             services.AddIdentity<ApplicationUser, ApplicationRole>()
-                .AddMongoDbStores<ApplicationUser, ApplicationRole, ObjectId>
+                .AddMongoDbStores<ApplicationUser, ApplicationRole, string>
                 (mongoDbSettings.ConnectionString, mongoDbSettings.DatabaseName);
+
+            services.AddBearerAuthentication();
 
             services.Configure<JobSiteDatabaseSettings>(
                 Configuration.GetSection(nameof(JobSiteDatabaseSettings)));
@@ -38,9 +49,19 @@ namespace JobSite
             services.AddSingleton<IJobSiteDatabaseSettings>(sp => sp.GetRequiredService<IOptions<JobSiteDatabaseSettings>>().Value);
 
             services.AddSingleton<JobSiteService>();
+            services.AddSingleton<CandidateService>();
+            services.AddSingleton<CompanyService>();
+            services.AddSingleton<JobService>();
+            services.AddSingleton<ITokenManager, TokenManager>();
 
             services.AddControllersWithViews();
-
+            services.AddMvc(option =>
+            {
+                option.EnableEndpointRouting = false;
+                var policy = new AuthorizationPolicyBuilder()
+                                .RequireAuthenticatedUser().RequireAuthenticatedUser().Build();
+                option.Filters.Add(new AuthorizeFilter(policy));
+            }).SetCompatibilityVersion(CompatibilityVersion.Latest);
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -65,8 +86,9 @@ namespace JobSite
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -85,5 +107,63 @@ namespace JobSite
                 }
             });
         }
+
     }
+
+    public static class AuthorizationExtension
+    {
+        // Extension method for Adding 
+        // JwtBearer Middleware to the Pipeline
+        public static IServiceCollection AddBearerAuthentication(
+            this IServiceCollection services)
+        {
+            var validationParams = new TokenValidationParameters()
+            {
+                ValidateAudience = true,
+                ValidateIssuer = true,
+                ValidateLifetime = true,
+                IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(TokenConstants.key)),
+                ValidIssuer = TokenConstants.Issuer,
+                ValidAudience = TokenConstants.Audience
+            };
+
+            var events = new JwtBearerEvents()
+            {
+                // invoked when the token validation fails
+                OnAuthenticationFailed = (context) =>
+                {
+                    return Task.CompletedTask;
+                },
+
+                // invoked when a request is received
+                OnMessageReceived = (context) =>
+                {
+                    return Task.CompletedTask;
+                },
+
+                // invoked when token is validated
+                OnTokenValidated = (context) =>
+                {
+                    return Task.CompletedTask;
+                }
+            };
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme
+                    = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme
+                    = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = validationParams;
+                options.Events = events;
+            });
+
+            return services;
+        }
+    }
+
 }
