@@ -17,8 +17,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using MongoDB.Bson;
-using System;
 
 namespace JobSite
 {
@@ -65,7 +63,7 @@ namespace JobSite
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/build1";
+                configuration.RootPath = "ClientApp/build";
             });
         }
 
@@ -101,10 +99,10 @@ namespace JobSite
             {
                 spa.Options.SourcePath = "clientapp";
 
-                //if (env.IsDevelopment())
-                //{
-                //    spa.UseReactDevelopmentServer(npmScript: "start");
-                //}
+                if (env.IsDevelopment())
+                {
+                    spa.UseReactDevelopmentServer(npmScript: "start");
+                }
             });
         }
 

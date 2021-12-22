@@ -1,0 +1,197 @@
+/* styleswitcher-left */
+.styleswitcher .switcher-title {
+    font-weight: 800;
+    margin: 10px 5px;
+    text-transform: uppercase;
+}
+.styleswitcher {
+    background-color: #ffffff;
+    box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    left: -220px;
+    padding: 15px;
+    position: fixed;
+    top: 0;
+    width: 220px;
+    z-index: 999;
+}
+.styleswitcher-inner {
+    height: 100%;
+    left: 0;
+    overflow: auto;
+    padding: 15px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.styleswitcher .switcher-btn-bx {
+    box-shadow: 7px 0 5px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    right: -40px;
+    top: 200px;
+}
+/* styleswitcher-left End*/
+/* styleswitcher-right */
+.styleswitcher-right .switcher-title {
+    font-weight: 400;
+    margin: 25px 5px 10px;
+    text-transform: uppercase;
+    font-family: rubik;
+	font-size: 16px;
+}
+.styleswitcher-right {
+    background-color: #ffffff;
+    box-shadow: -3px 1px 5px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    right: -300px;
+    padding: 15px;
+    position: fixed;
+    top: 0;
+    width: 300px;
+    z-index: 999;
+}
+.styleswitcher-right .switcher-btn-bx {
+    position: absolute;
+    left: -40px;
+    top: 200px;
+}
+.styleswitcher-right .switch-btn { 
+	box-shadow:-3px 1px 5px rgba(0, 0, 0, 0.1); 
+}
+/* styleswitcher-right End */
+.switch-btn {
+    background: #ffffff none repeat scroll 0 0;
+    box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.1);
+    color: #333333;
+    cursor: pointer;
+    display: block;
+    font-size: 30px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    width: 40px;
+}
+.layout-view, .nav-view, .header-view, .color-skins, .pattern-switcher, .background-switcher {
+    margin: 0;
+    padding: 0;
+}
+.layout-view li, .nav-view li, .header-view li {
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+}
+.layout-view li a {
+    display: block;
+    color: #333;
+	line-height: 30px;
+	font-size: 13px;
+}
+.layout-view li.active,
+.nav-view li.active,
+.header-view li.active {
+    background-color: #ddd;
+    color: #333333;
+	border: 0;
+}
+.layout-view li {
+    width: 46%;
+    border: 1px solid #ddd;
+    margin: 5px;
+    border-radius: 3px;
+}
+.color-skins li {
+    cursor: pointer;
+    display: inline-block;
+    list-style: outside none none;
+    margin: 0 4px 10px;
+}
+.color-skins li a {
+    display: block;
+    height: 35px;
+    width: 35px;
+}
+.color-skins li .skin-1 {
+    background-color: #FF304D;
+}
+.color-skins li .skin-2 {
+    background-color: #FC9D01;
+}
+.color-skins li .skin-3 {
+    background-color: #30C2F8;
+}
+.color-skins li .skin-4 {
+    background-color: #4D6CF1;
+}
+.color-skins li .skin-5 {
+    background-color: #CA1F26;
+}
+.color-skins li .skin-6 {
+    background-color: #8E3DB5;
+}
+.color-skins li .skin-7 {
+    background-color: #F1783F;
+}
+.color-skins li .skin-8 {
+    background-color: #26AA5D;
+}
+.background-switcher li {
+    cursor: pointer;
+    display: inline-block;
+    height: 35px;
+    margin: 0 4px 10px;
+    width: 35px;
+}
+.pattern-switcher li {
+    cursor: pointer;
+    display: inline-block;
+    height: 19px;
+    margin: 0 4px 10px;
+    width: 19px;
+}
+/* Demos */
+.demos{ 
+	margin:0; 
+	padding:0;
+}
+.demos li {
+    float: left;
+    list-style: outside none none;
+    padding: 5px;
+    width: 50%;
+}
+/* Buy Now */
+.buy-now-btn {
+    background: #81b441 none repeat scroll 0 0;
+    border-radius: 20px 0 0 20px;
+    box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    font-family: open sans;
+    font-weight: 600;
+    padding: 10px 20px;
+    position: fixed;
+    right: -90px;
+    text-transform: uppercase;
+    top: 50%;
+    transition: all 0.5s;
+	z-index:999;
+}
+.buy-now-btn i{
+	font-size:16px;
+}
+.buy-now-btn:hover {
+	right:-1px;
+	transition: all 0.5s;
+	color:#fff;
+}
+.buy-now-btn i{
+	margin-right:10px;
+	
+}
+.layout-view {
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+}
+.demos li img {
+    box-shadow: 0 0 5px 5px rgba(0,0,0,0.2);
+}
